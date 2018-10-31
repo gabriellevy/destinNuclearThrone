@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui widgets multimedia
 
 TARGET = destinNuclearThrone
 TEMPLATE = app
@@ -26,12 +24,52 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+    D:/boulot/QtProjects/destinLib/aventure.cpp \
+    D:/boulot/QtProjects/destinLib/carac.cpp \
+    D:/boulot/QtProjects/destinLib/choix.cpp \
+    D:/boulot/QtProjects/destinLib/condition.cpp \
+    D:/boulot/QtProjects/destinLib/effet.cpp \
+    D:/boulot/QtProjects/destinLib/evt.cpp \
+    D:/boulot/QtProjects/destinLib/glisseur.cpp \
+    D:/boulot/QtProjects/destinLib/histoire.cpp \
+    D:/boulot/QtProjects/destinLib/noeud.cpp \
+    D:/boulot/QtProjects/destinLib/perso.cpp \
+    D:/boulot/QtProjects/destinLib/setcarac.cpp \
+    D:/boulot/QtProjects/destinLib/evtaleatoire.cpp \
+    aspectratiolabel.cpp \
+        mainwindow.cpp \
+    run.cpp \
+    mutant.cpp \
+    universnucleaire.cpp
 
 HEADERS += \
-        mainwindow.h
+    D:/boulot/QtProjects/destinLib/aventure.h \
+    D:/boulot/QtProjects/destinLib/carac.h \
+    D:/boulot/QtProjects/destinLib/choix.h \
+    D:/boulot/QtProjects/destinLib/condition.h \
+    D:/boulot/QtProjects/destinLib/effet.h \
+    D:/boulot/QtProjects/destinLib/evt.h \
+    D:/boulot/QtProjects/destinLib/glisseur.h \
+    D:/boulot/QtProjects/destinLib/histoire.h \
+    D:/boulot/QtProjects/destinLib/noeud.h \
+    D:/boulot/QtProjects/destinLib/perso.h \
+    D:/boulot/QtProjects/destinLib/setcarac.h \
+    D:/boulot/QtProjects/destinLib/evtaleatoire.h \
+    aspectratiolabel.h \
+        mainwindow.h \
+    run.h \
+    mutant.h \
+    universnucleaire.h
 
 FORMS += \
+    D:/boulot/QtProjects/destinLib/aventure.ui \
+    D:/boulot/QtProjects/destinLib/carac.ui \
+    D:/boulot/QtProjects/destinLib/choix.ui \
+    D:/boulot/QtProjects/destinLib/effet.ui \
+    D:/boulot/QtProjects/destinLib/evt.ui \
+    D:/boulot/QtProjects/destinLib/histoire.ui \
+    D:/boulot/QtProjects/destinLib/noeud.ui \
+    D:/boulot/QtProjects/destinLib/perso.ui \
         mainwindow.ui
 
 CONFIG += mobility
