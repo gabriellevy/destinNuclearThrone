@@ -37,10 +37,10 @@ SOURCES += \
     D:/boulot/QtProjects/destinLib/setcarac.cpp \
     D:/boulot/QtProjects/destinLib/evtaleatoire.cpp \
     aspectratiolabel.cpp \
-        mainwindow.cpp \
     run.cpp \
     mutant.cpp \
-    universnucleaire.cpp
+    universnucleaire.cpp \
+    arme.cpp
 
 HEADERS += \
     D:/boulot/QtProjects/destinLib/aventure.h \
@@ -56,10 +56,10 @@ HEADERS += \
     D:/boulot/QtProjects/destinLib/setcarac.h \
     D:/boulot/QtProjects/destinLib/evtaleatoire.h \
     aspectratiolabel.h \
-        mainwindow.h \
     run.h \
     mutant.h \
-    universnucleaire.h
+    universnucleaire.h \
+    arme.h
 
 FORMS += \
     D:/boulot/QtProjects/destinLib/aventure.ui \
@@ -80,3 +80,6 @@ MOBILITY =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    nuclearthrone.qrc

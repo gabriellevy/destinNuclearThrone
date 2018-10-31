@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/niveau/Feu de camps.png</file>
+        <file>images/niveau/game-development-startups-nt-campfire-gif.gif</file>
+    </qresource>
+</RCC>
