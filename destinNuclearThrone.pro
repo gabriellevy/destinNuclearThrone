@@ -83,3 +83,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     nuclearthrone.qrc
+
+DISTFILES += \
+    images/persos/Fish_idle.gif

@@ -69,7 +69,23 @@ void Run::GenererHistoire()
 void Run::GenererEvtsAccueil()
 {
     Evt* Debut = AjouterEvt("Debut", "Choix de personnage");
-    Effet* intro = Debut->AjouterEffetNarration("Choisissez votre personnage.", ":/images/niveau/game-development-startups-nt-campfire-gif.gif");
-    //intro->m_GoToEvtId = "RandomJournalier";
+    Effet* intro = Debut->AjouterEffetNarration(
+                "Choisissez votre personnage.",
+                ":/images/niveau/game-development-startups-nt-campfire-gif.gif");
+    //intro->m_Son = "qrc:/sons/MusiqueIntro1.mp3";
+    intro->m_OrientationAffichageChoix = OrientationAffichageChoix::oac_horizontal;
+    intro->AjouterChoixGoToEffet("", "selection_fish", ":/images/persos/Fish_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_eyes", ":/images/persos/Eyes_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_melting", ":/images/persos/Melting_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_plante", ":/images/persos/Plant_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_yv", ":/images/persos/Yv_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_steroid", ":/images/persos/Steroids_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_robot", ":/images/persos/Robot_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_poulet", ":/images/persos/Chicken_icon2.png");
+    intro->AjouterChoixGoToEffet("", "selection_rebelle", ":/images/persos/Rebel_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_horreur", ":/images/persos/Horror_icon1.png");
+    intro->AjouterChoixGoToEffet("", "selection_rogue", ":/images/persos/Rogue_icon2.png");
 
+    // Fish :
+    Debut->AjouterEffetChangementPerso("fish", "fish sait faire ça", ":/images/persos/Fish_idle.gif", "selection_fish");
 }

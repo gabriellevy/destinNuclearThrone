@@ -7,10 +7,12 @@ class Arme
 {
 public:
 
-    Arme(QString Id, QString Intitule, int NbTirs, float BasePctTouche, int ConsoMunition, int Degats);
+    Arme(QString Id, QString Intitule, QString CheminImg,
+         int NbTirs, float BasePctTouche, int ConsoMunition, int Degats);
 
     QString m_Id;
     QString m_Intitule;
+    QString m_CheminImg;
     int m_NbTirs;
     float m_BasePctTouche;
     int m_ConsoMunition;
