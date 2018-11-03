@@ -1,5 +1,7 @@
 #include "run.h"
 #include "ui_aventure.h"
+#include "niveau.h"
+#include "mutant.h"
 
 QString Run::pv = "pv";
 QString Run::arme1 = "arme1";
@@ -64,6 +66,24 @@ void Run::GenererHistoire()
     m_Themes.append("unclear throne");
 
     GenererEvtsAccueil();
+
+    GenererNiveaux();
+}
+
+void Run::GenererNiveaux()
+{
+    Niveau niveau("desert1-1", Ouverture::o_ZoneOuverte, "desert1-2");
+    niveau.AjouterRencontrePossibleAvecEnnemis(1.0f, 1, 10, Ennemi::s_Bandit);
+}
+
+void Run::GenererPersos()
+{
+    Mutant mutant( "Mutant", "?", "", ":/images/persos/Inconnu.png");
+    IPerso::AjouterPersoJouable(mutant);
+
+    Mutant fish( "fish", "Fish", "Plus de munitions au début et à chaque ramassage\nBonus d'esquive grâce à ses roulades", ":/images/persos/Fish_icon1.png");
+    IPerso::AjouterPersoJouable(fish);
+
 }
 
 void Run::GenererEvtsAccueil()
@@ -87,5 +107,6 @@ void Run::GenererEvtsAccueil()
     intro->AjouterChoixGoToEffet("", "selection_rogue", ":/images/persos/Rogue_icon2.png");
 
     // Fish :
-    Debut->AjouterEffetChangementPerso("fish", "fish sait faire ça", ":/images/persos/Fish_idle.gif", "selection_fish");
+    QString description = IPerso::GetPersoInterface()->GetPerso("fish").m_Description;
+    Debut->AjouterEffetChangementPerso("fish", description, ":/images/persos/Fish_idle.gif", "selection_fish");
 }

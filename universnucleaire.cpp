@@ -1,9 +1,9 @@
 #include "universnucleaire.h"
 #include "D:/boulot/QtProjects/destinLib/perso.h"
 #include "ui_aventure.h"
-#include "mutant.h"
 #include "run.h"
 #include "arme.h"
+#include "mutant.h"
 
 UniversNucleaire::UniversNucleaire(ModeAffichage modeAffichage,
                                    QWidget *parent,
@@ -11,9 +11,9 @@ UniversNucleaire::UniversNucleaire(ModeAffichage modeAffichage,
                                    QString premierEffet)
     : Aventure(parent, modeAffichage)
 {
-    m_Perso = new Mutant(ui->persoWidget);
+    m_Perso = new IPerso(ui->persoWidget);
     m_Histoire = new Run(ui->histoireWidget);
-    this->setWindowTitle("Vie d'un Mékano");
+    this->setWindowTitle("Nuclear throne");
 
     // positionner l'interface
     ui->persoWidget->layout()->addWidget(m_Perso);
@@ -41,7 +41,7 @@ void UniversNucleaire::GenererAventure()
 
     GenererCaracs();
 
-    (static_cast<Mutant*>(m_Perso))->GenererPersos();
+    m_Histoire->GenererPersos();
 
     m_Histoire->GenererHistoire();
 

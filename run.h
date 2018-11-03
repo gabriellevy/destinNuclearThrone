@@ -60,7 +60,9 @@ public:
     static QString energie;
 
 private:
+    void GenererNiveaux();
     void GenererEvtsAccueil();
+    virtual void GenererPersos();
 
 };
 

@@ -3,17 +3,12 @@
 
 #include "D:/boulot/QtProjects/destinLib/perso.h"
 
-class Mutant : public IPerso
+class Mutant : public DPerso
 {
-    Q_OBJECT
 public:
-    explicit Mutant(QWidget *parent = nullptr);
+    Mutant(QString id, QString nom, QString description, QString imagePortrait);
 
-    virtual void GenererPersos();
-
-signals:
-
-public slots:
+    ~Mutant();
 };
 
 #endif // MUTANT_H

@@ -40,7 +40,11 @@ SOURCES += \
     run.cpp \
     mutant.cpp \
     universnucleaire.cpp \
-    arme.cpp
+    arme.cpp \
+    niveau.cpp \
+    rencontre.cpp \
+    ennemi.cpp \
+    generateurennemis.cpp
 
 HEADERS += \
     D:/boulot/QtProjects/destinLib/aventure.h \
@@ -59,7 +63,11 @@ HEADERS += \
     run.h \
     mutant.h \
     universnucleaire.h \
-    arme.h
+    arme.h \
+    niveau.h \
+    rencontre.h \
+    ennemi.h \
+    generateurennemis.h
 
 FORMS += \
     D:/boulot/QtProjects/destinLib/aventure.ui \
@@ -69,8 +77,7 @@ FORMS += \
     D:/boulot/QtProjects/destinLib/evt.ui \
     D:/boulot/QtProjects/destinLib/histoire.ui \
     D:/boulot/QtProjects/destinLib/noeud.ui \
-    D:/boulot/QtProjects/destinLib/perso.ui \
-        mainwindow.ui
+    D:/boulot/QtProjects/destinLib/perso.ui
 
 CONFIG += mobility
 MOBILITY = 

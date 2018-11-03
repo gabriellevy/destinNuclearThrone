@@ -36,5 +36,6 @@
         <file>images/armes/Pistol3.png</file>
         <file>images/armes/Crossbow3.png</file>
         <file>images/armes/Shotgun3.png</file>
+        <file>images/persos/Inconnu.png</file>
     </qresource>
 </RCC>
