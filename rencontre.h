@@ -3,7 +3,8 @@
 
 #include <QVector>
 #include "ennemi.h"
-#include "generateurennemis.h"
+#include "../destinLib/effet.h"
+#include "rencontrepotentielle.h"
 
 // est-ce qu'une zone ou un niveau est plutôt encaissée ou plutôt ouverte ?
 enum Ouverture {
@@ -13,25 +14,18 @@ enum Ouverture {
     o_Indifferent // utile pour les rencontres dont l'ouverture dépend de la zone où elles se trouvent
 };
 
-enum TypeRencontre {
-    tr_Ennemis, // rencontre de base avec un certain nombre d'ennemi
-    tr_CoffreMunitions,
-    tr_CoffreArmes,
-    tr_MultiRencontres
-};
-
 /**
- * @brief Forme d'événements arrivant dans les niveaux
+ * @brief Forme d'effet arrivant dans les niveaux semi aléatoirement
  */
-class Rencontre
+class Rencontre : public Effet
 {
 public:
-    Rencontre();
-
-    float m_Proba = -1;
+    Rencontre(QString id,
+              QString text = "",
+              QString imgPath = "",
+              QWidget *parent = nullptr);
 
     QVector<Ennemi> m_Ennemis = {};
-    QVector<GenerateurEnnemis> m_GenerateursEnnemi = {};
 
     // génère le contenu non fixe de la rencontre, par exemple le nombre semi aléatoire d'ennemis est calculé
     void LancementRencontre();

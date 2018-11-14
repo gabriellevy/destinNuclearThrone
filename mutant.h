@@ -1,7 +1,7 @@
 #ifndef MUTANT_H
 #define MUTANT_H
 
-#include "D:/boulot/QtProjects/destinLib/perso.h"
+#include "../destinLib/perso.h"
 
 class Mutant : public DPerso
 {

@@ -22,20 +22,26 @@
         <file>images/persos/Rebel_idle.gif</file>
         <file>images/persos/Robot_icon1.png</file>
         <file>images/persos/Robot_idle_new.gif</file>
-        <file>images/persos/Rogue_icon2.png</file>
         <file>images/persos/Rogue_idle2.gif</file>
         <file>images/persos/SprRobotEat_strip9a.gif</file>
         <file>images/persos/Steroids_icon1.png</file>
         <file>images/persos/Steroids_idle.gif</file>
         <file>images/persos/Yv_icon1.png</file>
         <file>images/persos/Yv_idle_new.gif</file>
-        <file>sons/MusiqueIntro1.ogg</file>
-        <file>sons/MusiqueIntro2.ogg</file>
         <file>sons/MusiqueIntro1.mp3</file>
         <file>sons/MusiqueIntro2.mp3</file>
         <file>images/armes/Pistol3.png</file>
         <file>images/armes/Crossbow3.png</file>
         <file>images/armes/Shotgun3.png</file>
         <file>images/persos/Inconnu.png</file>
+        <file>sons/mus1.mp3</file>
+        <file>sons/mus2.mp3</file>
+        <file>sons/mus3.mp3</file>
+        <file>sons/mus4.mp3</file>
+        <file>sons/mus5.mp3</file>
+        <file>sons/mus6.mp3</file>
+        <file>sons/mus7.mp3</file>
+        <file>images/niveau/Desert2.png</file>
+        <file>images/persos/Rogue_icon1.png</file>
     </qresource>
 </RCC>

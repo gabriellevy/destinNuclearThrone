@@ -1,5 +1,5 @@
 #include "universnucleaire.h"
-#include "D:/boulot/QtProjects/destinLib/perso.h"
+#include "../destinLib/perso.h"
 #include "ui_aventure.h"
 #include "run.h"
 #include "arme.h"

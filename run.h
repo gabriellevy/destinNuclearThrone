@@ -2,7 +2,8 @@
 #define RUN_H
 
 #include <QWidget>
-#include "D:/boulot/QtProjects/destinLib/histoire.h"
+#include "../destinLib/histoire.h"
+#include "niveau.h"
 
 class Run : public Histoire
 {
@@ -61,6 +62,7 @@ public:
 
 private:
     void GenererNiveaux();
+    Niveau* AjouterNiveau(QString id, QString nom, Ouverture ouverture, int nbRencontres, QString niveau_suivant, QString img, QString musique);
     void GenererEvtsAccueil();
     virtual void GenererPersos();
 

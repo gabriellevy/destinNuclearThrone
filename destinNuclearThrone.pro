@@ -21,21 +21,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+CONFIG += resources_big
 
 SOURCES += \
         main.cpp \
-    D:/boulot/QtProjects/destinLib/aventure.cpp \
-    D:/boulot/QtProjects/destinLib/carac.cpp \
-    D:/boulot/QtProjects/destinLib/choix.cpp \
-    D:/boulot/QtProjects/destinLib/condition.cpp \
-    D:/boulot/QtProjects/destinLib/effet.cpp \
-    D:/boulot/QtProjects/destinLib/evt.cpp \
-    D:/boulot/QtProjects/destinLib/glisseur.cpp \
-    D:/boulot/QtProjects/destinLib/histoire.cpp \
-    D:/boulot/QtProjects/destinLib/noeud.cpp \
-    D:/boulot/QtProjects/destinLib/perso.cpp \
-    D:/boulot/QtProjects/destinLib/setcarac.cpp \
-    D:/boulot/QtProjects/destinLib/evtaleatoire.cpp \
+    ../destinLib/aventure.cpp \
+    ../destinLib/carac.cpp \
+    ../destinLib/choix.cpp \
+    ../destinLib/condition.cpp \
+    ../destinLib/effet.cpp \
+    ../destinLib/evt.cpp \
+    ../destinLib/glisseur.cpp \
+    ../destinLib/histoire.cpp \
+    ../destinLib/noeud.cpp \
+    ../destinLib/perso.cpp \
+    ../destinLib/setcarac.cpp \
+    ../destinLib/evtaleatoire.cpp \
     aspectratiolabel.cpp \
     run.cpp \
     mutant.cpp \
@@ -44,21 +45,22 @@ SOURCES += \
     niveau.cpp \
     rencontre.cpp \
     ennemi.cpp \
-    generateurennemis.cpp
+    generateurennemis.cpp \
+    rencontrepotentielle.cpp
 
 HEADERS += \
-    D:/boulot/QtProjects/destinLib/aventure.h \
-    D:/boulot/QtProjects/destinLib/carac.h \
-    D:/boulot/QtProjects/destinLib/choix.h \
-    D:/boulot/QtProjects/destinLib/condition.h \
-    D:/boulot/QtProjects/destinLib/effet.h \
-    D:/boulot/QtProjects/destinLib/evt.h \
-    D:/boulot/QtProjects/destinLib/glisseur.h \
-    D:/boulot/QtProjects/destinLib/histoire.h \
-    D:/boulot/QtProjects/destinLib/noeud.h \
-    D:/boulot/QtProjects/destinLib/perso.h \
-    D:/boulot/QtProjects/destinLib/setcarac.h \
-    D:/boulot/QtProjects/destinLib/evtaleatoire.h \
+    ../destinLib/aventure.h \
+    ../destinLib/carac.h \
+    ../destinLib/choix.h \
+    ../destinLib/condition.h \
+    ../destinLib/effet.h \
+    ../destinLib/evt.h \
+    ../destinLib/glisseur.h \
+    ../destinLib/histoire.h \
+    ../destinLib/noeud.h \
+    ../destinLib/perso.h \
+    ../destinLib/setcarac.h \
+    ../destinLib/evtaleatoire.h \
     aspectratiolabel.h \
     run.h \
     mutant.h \
@@ -67,17 +69,18 @@ HEADERS += \
     niveau.h \
     rencontre.h \
     ennemi.h \
-    generateurennemis.h
+    generateurennemis.h \
+    rencontrepotentielle.h
 
 FORMS += \
-    D:/boulot/QtProjects/destinLib/aventure.ui \
-    D:/boulot/QtProjects/destinLib/carac.ui \
-    D:/boulot/QtProjects/destinLib/choix.ui \
-    D:/boulot/QtProjects/destinLib/effet.ui \
-    D:/boulot/QtProjects/destinLib/evt.ui \
-    D:/boulot/QtProjects/destinLib/histoire.ui \
-    D:/boulot/QtProjects/destinLib/noeud.ui \
-    D:/boulot/QtProjects/destinLib/perso.ui
+    ../destinLib/aventure.ui \
+    ../destinLib/carac.ui \
+    ../destinLib/choix.ui \
+    ../destinLib/effet.ui \
+    ../destinLib/evt.ui \
+    ../destinLib/histoire.ui \
+    ../destinLib/noeud.ui \
+    ../destinLib/perso.ui
 
 CONFIG += mobility
 MOBILITY = 
@@ -90,6 +93,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     nuclearthrone.qrc
-
-DISTFILES += \
-    images/persos/Fish_idle.gif

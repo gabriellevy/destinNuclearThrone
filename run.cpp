@@ -70,10 +70,30 @@ void Run::GenererHistoire()
     GenererNiveaux();
 }
 
+Niveau* Run::AjouterNiveau(QString id, QString nom, Ouverture ouverture, int nbRencontres, QString niveau_suivant, QString img, QString musique)
+{
+    Niveau* evt = new Niveau(id, nom, ouverture, nbRencontres, niveau_suivant);
+    m_Evts.push_back(evt);
+
+    // ajouter un niveau ajoute automatiquement ses effets
+    Effet* entreeNiveau = evt->AjouterEffetNarration("Début du désert 1-1", img);
+    entreeNiveau->m_Son = musique;
+    entreeNiveau->AjouterCallback(&Niveau::CalculRencontres, id);
+
+    return evt;
+}
+
 void Run::GenererNiveaux()
 {
-    Niveau niveau("desert1-1", Ouverture::o_ZoneOuverte, "desert1-2");
-    niveau.AjouterRencontrePossibleAvecEnnemis(1.0f, 1, 10, Ennemi::s_Bandit);
+    Niveau* NivDesert11 = AjouterNiveau( Niveau::NivDesert11,
+                                         "Désert",
+                                         Ouverture::o_ZoneOuverte,
+                                         10,
+                                         Niveau::NivDesert12,
+                                         ":/images/niveau/Desert2.png",
+                                         "qrc:/sons/mus1.mp3");
+    NivDesert11->AjouterRencontrePossibleAvecEnnemis(1.0f, 1, 10, Ennemi::s_Bandit);
+
 }
 
 void Run::GenererPersos()
@@ -92,7 +112,7 @@ void Run::GenererEvtsAccueil()
     Effet* intro = Debut->AjouterEffetNarration(
                 "Choisissez votre personnage.",
                 ":/images/niveau/game-development-startups-nt-campfire-gif.gif");
-    //intro->m_Son = "qrc:/sons/MusiqueIntro1.mp3";
+    intro->m_Son = "qrc:/sons/MusiqueIntro1.mp3";
     intro->m_OrientationAffichageChoix = OrientationAffichageChoix::oac_horizontal;
     intro->AjouterChoixGoToEffet("", "selection_fish", ":/images/persos/Fish_icon1.png");
     intro->AjouterChoixGoToEffet("", "selection_eyes", ":/images/persos/Eyes_icon1.png");
@@ -104,9 +124,10 @@ void Run::GenererEvtsAccueil()
     intro->AjouterChoixGoToEffet("", "selection_poulet", ":/images/persos/Chicken_icon2.png");
     intro->AjouterChoixGoToEffet("", "selection_rebelle", ":/images/persos/Rebel_icon1.png");
     intro->AjouterChoixGoToEffet("", "selection_horreur", ":/images/persos/Horror_icon1.png");
-    intro->AjouterChoixGoToEffet("", "selection_rogue", ":/images/persos/Rogue_icon2.png");
+    intro->AjouterChoixGoToEffet("", "selection_rogue", ":/images/persos/Rogue_icon1.png");
 
     // Fish :
     QString description = IPerso::GetPersoInterface()->GetPerso("fish").m_Description;
-    Debut->AjouterEffetChangementPerso("fish", description, ":/images/persos/Fish_idle.gif", "selection_fish");
+    Effet* fishPers = Debut->AjouterEffetChangementPerso("fish", description, ":/images/persos/Fish_idle.gif", "selection_fish");
+    fishPers->m_GoToEvtId = Niveau::NivDesert11;
 }

@@ -2,7 +2,7 @@
 #define UNIVERSNUCLEAIRE_H
 
 #include <QWidget>
-#include "D:/boulot/QtProjects/destinLib/aventure.h"
+#include "../destinLib/aventure.h"
 
 class UniversNucleaire : public Aventure
 {
