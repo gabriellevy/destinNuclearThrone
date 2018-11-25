@@ -93,6 +93,11 @@ void Run::GenererNiveaux()
                                          ":/images/niveau/Desert2.png",
                                          "qrc:/sons/mus1.mp3");
     NivDesert11->AjouterRencontrePossibleAvecEnnemis(1.0f, 1, 10, Ennemi::s_Bandit);
+    NivDesert11->AjouterRencontrePossibleAvecEnnemis(0.15f, 1, 1, Ennemi::s_NidAAsticot);
+    NivDesert11->AjouterRencontrePossibleAvecEnnemis(0.6f, 1, 1, Ennemi::s_Asticot);
+    NivDesert11->AjouterRencontrePossibleAvecEnnemis(0.5f, 1, 1, Ennemi::s_AsticotGeant);
+    NivDesert11->AjouterRencontrePossibleAvecEnnemis(0.6f, 1, 3, Ennemi::s_Scorpion);
+    NivDesert11->AjouterRencontrePossibleAvecEnnemis(0.01f, 1, 1, Ennemi::s_ScorpionOr);
 
 }
 

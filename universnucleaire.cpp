@@ -9,7 +9,7 @@ UniversNucleaire::UniversNucleaire(ModeAffichage modeAffichage,
                                    QWidget *parent,
                                    QString premierEvt,
                                    QString premierEffet)
-    : Aventure(parent, modeAffichage)
+    : Univers(parent, modeAffichage)
 {
     m_Perso = new IPerso(ui->persoWidget);
     m_Histoire = new Run(ui->histoireWidget);
@@ -28,6 +28,11 @@ UniversNucleaire::UniversNucleaire(ModeAffichage modeAffichage,
         m_Histoire->SetEffetIndex(m_Histoire->DeterminerIndexEffet(premierEffet) );
 
     m_EtatPartie = EP_Deroulement;
+
+    // tmp
+    m_Reglages.m_SonOn = false;
+    //fin tmp
+
     LancerEvtEtOuEffetCourant();
 }
 

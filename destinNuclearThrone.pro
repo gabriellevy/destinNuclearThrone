@@ -37,6 +37,7 @@ SOURCES += \
     ../destinLib/perso.cpp \
     ../destinLib/setcarac.cpp \
     ../destinLib/evtaleatoire.cpp \
+    ../destinLib/reglages.cpp \
     aspectratiolabel.cpp \
     run.cpp \
     mutant.cpp \
@@ -61,6 +62,7 @@ HEADERS += \
     ../destinLib/perso.h \
     ../destinLib/setcarac.h \
     ../destinLib/evtaleatoire.h \
+    ../destinLib/reglages.h \
     aspectratiolabel.h \
     run.h \
     mutant.h \

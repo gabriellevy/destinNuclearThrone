@@ -21,14 +21,13 @@ class Rencontre : public Effet
 {
 public:
     Rencontre(QString id,
-              QString text = "",
               QString imgPath = "",
               QWidget *parent = nullptr);
 
     QVector<Ennemi> m_Ennemis = {};
 
     // génère le contenu non fixe de la rencontre, par exemple le nombre semi aléatoire d'ennemis est calculé
-    void LancementRencontre();
+    void GenerationEnnemis(RencontrePotentielle rencontrePossible);
 
     TypeRencontre m_TypeRencontre;
     // ouverture de base du niveau, mais peut être surclassé par l'ouverture d'une rencontre particulière

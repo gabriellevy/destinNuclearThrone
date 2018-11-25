@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "../destinLib/aventure.h"
 
-class UniversNucleaire : public Aventure
+class UniversNucleaire : public Univers
 {
     Q_OBJECT
 private:
