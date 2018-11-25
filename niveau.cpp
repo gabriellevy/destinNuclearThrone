@@ -24,9 +24,9 @@ void Niveau::AjouterRencontrePossibleAvecEnnemis(float proba, int minimum, int m
     m_RencontresPossibles.push_back(rencontre);
 }
 
-void Niveau::CalculRencontres(QString idNiveau)
+void Niveau::CalculRencontres(QVector<QString> idNiveau)
 {
-    Niveau* niveau = s_Niveaux[idNiveau];
+    Niveau* niveau = s_Niveaux[idNiveau[0]];
 
     foreach (const RencontrePotentielle f_Rencontre, niveau->m_RencontresObligatoires)
         niveau->m_RencontresFinales.push_back(RencontrePotentielle(f_Rencontre));
@@ -59,18 +59,27 @@ void Niveau::CalculRencontres(QString idNiveau)
     {
         int indexExtrait = qFloor(rand() % niveau->m_RencontresFinales.size());
         RencontrePotentielle rencontreChoisie = niveau->m_RencontresFinales.takeAt(indexExtrait);
-        niveau->AjouterRencontreEffet(rencontreChoisie, indexEffet);
-        //ici ajouter un pseudo go to d'effet rencontre au suivant (jusqu'à celui qui est go to prochain niveau. (exécuté quand les ennemies de la rencontre actuelle sont éliminés)
+
+        niveau->AjouterRencontreEffet(rencontreChoisie, indexEffet, niveau->m_RencontresFinales.size() < 1);
         ++indexEffet;
     }
 
 }
 
-Rencontre* Niveau::AjouterRencontreEffet(RencontrePotentielle rencontrePossible, int index)
+Rencontre* Niveau::AjouterRencontreEffet(RencontrePotentielle rencontrePossible, int index, bool derniereRencontre)
 {
     QString idRencontre = ("rencontre" + QString::number(index));
     Rencontre* rencontre = new Rencontre(idRencontre);
     rencontre->m_TypeRencontre = rencontrePossible.m_TypeRencontre;
+
+
+    // selon le numéro de la rencontre elle est suivie d'une autre rencontre ou d'un autre niveau
+    if ( !derniereRencontre)
+    {
+        rencontre->m_GoToEffetId = "rencontre" + QString::number(index + 1);
+    }
+    rencontre->AjouterCallback(&Rencontre::CalculRound, {m_Id, idRencontre, idRencontre});
+
     m_Effets.push_back(rencontre);
 
     // génération d'ennemis :

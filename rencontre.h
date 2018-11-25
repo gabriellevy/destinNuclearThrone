@@ -29,9 +29,16 @@ public:
     // génère le contenu non fixe de la rencontre, par exemple le nombre semi aléatoire d'ennemis est calculé
     void GenerationEnnemis(RencontrePotentielle rencontrePossible);
 
+    /**
+     * @brief renvoie la liste des ennemis présents dans la rencontre
+     */
+    const QString TexteDescriptif();
+
     TypeRencontre m_TypeRencontre;
     // ouverture de base du niveau, mais peut être surclassé par l'ouverture d'une rencontre particulière
     Ouverture m_Ouverture;
+
+    static void CalculRound(QVector<QString> idNiveauEtidEffet);
 };
 
 #endif // RENCONTRE_H

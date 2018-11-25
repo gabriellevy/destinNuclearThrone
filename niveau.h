@@ -15,7 +15,6 @@ private:
     QVector<RencontrePotentielle> m_RencontresFinales = {};
 
     // "singletons"
-    static QHash<QString, Niveau*> s_Niveaux;
     static void AjouterAListeNiveaux(Niveau* niveau);
 
 public:
@@ -27,13 +26,13 @@ public:
 
     void AjouterRencontrePossibleAvecEnnemis(float proba, int minimum, int maximum, QString ennemiId);
 
-    Rencontre* AjouterRencontreEffet(RencontrePotentielle rencontrePossible, int index);
+    Rencontre* AjouterRencontreEffet(RencontrePotentielle rencontrePossible, int index, bool derniereRencontre);
 
     /**
      * @brief Génère l'intégralité de la rencontre
      * Ajoute les rencontres obligatoires et détermine les rencontres facultatives pour remplir le total des rencontres du niveau
     */
-    static void CalculRencontres(QString aQuoiCaSert);
+    static void CalculRencontres(QVector<QString> idNiveau);
 
     Ouverture m_Ouverture;
     QString m_NiveauSuivant;// id du niveau suivant
@@ -42,6 +41,7 @@ public:
     QVector<RencontrePotentielle> m_RencontresObligatoires = {};
     // ouverture de base du niveau, mais peut être surclassé par l'ouverture d'une rencontre particulière
 
+    static QHash<QString, Niveau*> s_Niveaux;
 };
 
 #endif // NIVEAU_H

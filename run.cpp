@@ -78,7 +78,7 @@ Niveau* Run::AjouterNiveau(QString id, QString nom, Ouverture ouverture, int nbR
     // ajouter un niveau ajoute automatiquement ses effets
     Effet* entreeNiveau = evt->AjouterEffetNarration("Début du désert 1-1", img);
     entreeNiveau->m_Son = musique;
-    entreeNiveau->AjouterCallback(&Niveau::CalculRencontres, id);
+    entreeNiveau->AjouterCallback(&Niveau::CalculRencontres,{id});
 
     return evt;
 }
