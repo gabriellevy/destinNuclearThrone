@@ -1,5 +1,7 @@
 #include "rencontre.h"
 #include "niveau.h"
+#include "arme.h"
+#include "run.h"
 
 Rencontre::Rencontre(QString id,
                      QString imgPath,
@@ -19,7 +21,7 @@ void Rencontre::GenerationEnnemis(RencontrePotentielle rencontrePossible)
         int indexGenEennemi = rand()%rencontrePossible.m_GenerateursEnnemi.size();
         GenerateurEnnemis gene = rencontrePossible.m_GenerateursEnnemi.at(indexGenEennemi);
 
-        // générer les ennemis en focntion de ce générateur :
+        // générer les ennemis en fonction de ce générateur :
         int nbEnnemis = 1;
         if ( gene.m_Minimum != gene.m_Maximum )
             nbEnnemis = rand() % (gene.m_Maximum - gene.m_Minimum) + gene.m_Minimum;
@@ -51,21 +53,42 @@ void Rencontre::CalculRound(QVector<QString> idNiveau_idRencontre_idEffet)
     if (rencontre->m_Ennemis.size() > 0 )
     {
         // attaques du joueur
+        int nbEnnemis = rencontre->m_Ennemis.size();
+
+        Q_ASSERT_X(Arme::ARMES.contains(Univers::ME->GetHistoire()->GetCaracValue(Run::arme1)),
+                   "Rencontre::CalculRound",
+                   (QString("Arme introuvable : " + Univers::ME->GetHistoire()->GetCaracValue(Run::arme1) )).toStdString().c_str());
+
+        Arme* arme = Arme::ARMES[Univers::ME->GetHistoire()->GetCaracValue(Run::arme1)];
+
+        int nbTouches = arme->AttaqueEnnemis(rencontre->m_Ennemis);
+        bool ennemiElimine = (nbEnnemis != rencontre->m_Ennemis.size());
+
 
 
         // attaques des ennemis
 
 
-        rencontre->m_Ennemis.pop_back();
+        //rencontre->m_Ennemis.pop_back();
 
         // génération d'un nouvel effet où tout cela sera affiché
-        QString text = "Tous les ennemis sont éliminés";
+        QString text = "";
         QString imgPath = "";
         if ( rencontre->m_Ennemis.size() > 0)
         {
-            text = "ennemi éliminé, mais il reste " + rencontre->TexteDescriptif();
+            if ( ennemiElimine )
+                text = "ennemi éliminé, mais ";
+            text += "il reste " + rencontre->TexteDescriptif();
             imgPath = rencontre->m_Ennemis[0].m_ImgIdle;
+
+            if ( !ennemiElimine && nbTouches > 0)
+                text += "\n" + QString::number(nbTouches)
+                        + " blessure" + (nbTouches > 1 ? "s":"")
+                        + " infligée" + (nbTouches > 1 ? "s":"");
         }
+        else
+            text = "Tous les ennemis sont éliminés";
+
         Effet* effetRound = niveau->AjouterEffetNarration(text, imgPath);
 
         // et liens d'enclenchement entre ce nouvel effet et le précédent, puis relancement du prochain round

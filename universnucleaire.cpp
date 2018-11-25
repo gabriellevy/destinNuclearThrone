@@ -56,7 +56,7 @@ void UniversNucleaire::GenererAventure()
 void UniversNucleaire::GenererCaracs()
 {
     m_Histoire->m_Caracs.append(new Jauge(Run::pv, "PV", 0, 8,8,"", ""));
-    m_Histoire->m_Caracs.append(new Carac(Run::arme1, "Arme active", "Revolver", ":/images/armes/Pistol3.png", "", MODE_AFFICHAGE::ma_Img));
+    m_Histoire->m_Caracs.append(new Carac(Run::arme1, "Arme active", Arme::revolver, ":/images/armes/Pistol3.png", "", MODE_AFFICHAGE::ma_Img));
     m_Histoire->m_Caracs.append(new Carac(Run::arme2, "Arme secondaire", "", "", "", MODE_AFFICHAGE::ma_Img));
 
     /// compétences
