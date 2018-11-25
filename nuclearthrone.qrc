@@ -43,5 +43,13 @@
         <file>sons/mus7.mp3</file>
         <file>images/niveau/Desert2.png</file>
         <file>images/persos/Rogue_icon1.png</file>
+        <file>images/ennemis/Bandit_idle.gif</file>
+        <file>images/ennemis/Bigbandit_idle.gif</file>
+        <file>images/ennemis/Bigmaggot_walk.gif</file>
+        <file>images/ennemis/Goldscorpion_idle.gif</file>
+        <file>images/ennemis/Maggot_walk.gif</file>
+        <file>images/ennemis/Radmaggot_walk.gif</file>
+        <file>images/ennemis/Scorpion_idle.gif</file>
+        <file>images/ennemis/Spawner_idle.gif</file>
     </qresource>
 </RCC>

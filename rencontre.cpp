@@ -30,6 +30,8 @@ void Rencontre::GenerationEnnemis(RencontrePotentielle rencontrePossible)
         }
 
         this->m_Text = m_Ennemis.at(0).m_Nom + " (" + QString::number(nbEnnemis) + ")";
+        if ( m_Ennemis.at(0).m_ImgIdle != "" )
+            this->ChargerImage(m_Ennemis.at(0).m_ImgIdle);
     }break;
     default: {
 
@@ -58,11 +60,13 @@ void Rencontre::CalculRound(QVector<QString> idNiveau_idRencontre_idEffet)
 
         // génération d'un nouvel effet où tout cela sera affiché
         QString text = "Tous les ennemis sont éliminés";
+        QString imgPath = "";
         if ( rencontre->m_Ennemis.size() > 0)
         {
             text = "ennemi éliminé, mais il reste " + rencontre->TexteDescriptif();
+            imgPath = rencontre->m_Ennemis[0].m_ImgIdle;
         }
-        Effet* effetRound = niveau->AjouterEffetNarration(text);
+        Effet* effetRound = niveau->AjouterEffetNarration(text, imgPath);
 
         // et liens d'enclenchement entre ce nouvel effet et le précédent, puis relancement du prochain round
         effetRound->m_Id = "round" + QString::number(niveau->m_Effets.size());

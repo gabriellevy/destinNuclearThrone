@@ -6,7 +6,7 @@ class Ennemi
 {
 public:
     Ennemi();
-    Ennemi(QString nom, int m_PV, int m_Degats, int m_NbRads, float m_PourcentageTouche, int portee);
+    Ennemi(QString nom, int m_PV, int m_Degats, int m_NbRads, float m_PourcentageTouche, int portee, QString imgIdle);
     Ennemi(const Ennemi &ennemi);
 
     QString m_Nom;
@@ -15,6 +15,7 @@ public:
     int m_Portee;
     int m_NbRads;
     float m_PourcentageTouche;
+    QString m_ImgIdle;
 
     // factory d'ennemis :
     static Ennemi GenerationEnnemi(QString id);
