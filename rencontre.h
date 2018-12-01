@@ -14,13 +14,16 @@ enum Ouverture {
     o_Indifferent // utile pour les rencontres dont l'ouverture dépend de la zone où elles se trouvent
 };
 
+class Niveau;
+
 /**
  * @brief Forme d'effet arrivant dans les niveaux semi aléatoirement
  */
 class Rencontre : public Effet
 {
 public:
-    Rencontre(QString id,
+    Rencontre(Niveau* niveau,
+              QString id,
               QString imgPath = "",
               QWidget *parent = nullptr);
 
@@ -38,7 +41,10 @@ public:
     // ouverture de base du niveau, mais peut être surclassé par l'ouverture d'une rencontre particulière
     Ouverture m_Ouverture;
 
-    static void CalculRound(QVector<QString> idNiveauEtidEffet);
+    void CalculRound(QVector<QString> idNiveauEtidEffet);
+
+private:
+    Niveau* m_Niveau;
 };
 
 #endif // RENCONTRE_H

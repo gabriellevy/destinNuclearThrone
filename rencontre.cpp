@@ -3,10 +3,11 @@
 #include "arme.h"
 #include "run.h"
 
-Rencontre::Rencontre(QString id,
+Rencontre::Rencontre(Niveau* niveau,
+                     QString id,
                      QString imgPath,
                      QWidget *parent)
-    :Effet( id, "", imgPath, parent)
+    :Effet( id, "", imgPath, parent), m_Niveau(niveau)
 {
 
 }
@@ -42,18 +43,19 @@ void Rencontre::GenerationEnnemis(RencontrePotentielle rencontrePossible)
     }
 }
 
-void Rencontre::CalculRound(QVector<QString> idNiveau_idRencontre_idEffet)
+void Rencontre::CalculRound(QVector<QString> idEffet)
 {
-    Q_ASSERT_X(idNiveau_idRencontre_idEffet.size() == 3, "Rencontre::CalculRound", "Pas le bon nomber d'argument à la fonction runtime CalclRound");
-    Niveau* niveau = Niveau::s_Niveaux[idNiveau_idRencontre_idEffet[0]];
-    Rencontre* rencontre = static_cast<Rencontre*>(niveau->TrouverEffet(idNiveau_idRencontre_idEffet[1]));
-    Effet* effetCourant = niveau->TrouverEffet(idNiveau_idRencontre_idEffet[2]);
+    //Q_ASSERT_X(idNiveau_idRencontre_idEffet.size() == 3, "Rencontre::CalculRound", "Pas le bon nomber d'argument à la fonction runtime CalclRound");
+    //Niveau* niveau = Niveau::s_Niveaux[idNiveau_idRencontre_idEffet[0]];
+    //Rencontre* rencontre = static_cast<Rencontre*>(niveau->TrouverEffet(idNiveau_idRencontre_idEffet[1]));
+
+    Effet* effetCourant = m_Niveau->TrouverEffet(idEffet[0]);
 
     // détermination de si un nouveau round est nécessaire. Sinon cet appel de fonction est inutile : on laisse le goto amener à la rencontre suivante
-    if (rencontre->m_Ennemis.size() > 0 )
+    if (this->m_Ennemis.size() > 0 )
     {
         // attaques du joueur
-        int nbEnnemis = rencontre->m_Ennemis.size();
+        int nbEnnemis = this->m_Ennemis.size();
 
         Q_ASSERT_X(Arme::ARMES.contains(Univers::ME->GetHistoire()->GetCaracValue(Run::arme1)),
                    "Rencontre::CalculRound",
@@ -61,8 +63,8 @@ void Rencontre::CalculRound(QVector<QString> idNiveau_idRencontre_idEffet)
 
         Arme* arme = Arme::ARMES[Univers::ME->GetHistoire()->GetCaracValue(Run::arme1)];
 
-        int nbTouches = arme->AttaqueEnnemis(rencontre->m_Ennemis);
-        bool ennemiElimine = (nbEnnemis != rencontre->m_Ennemis.size());
+        int nbTouches = arme->AttaqueEnnemis(this->m_Ennemis);
+        bool ennemiElimine = (nbEnnemis != this->m_Ennemis.size());
 
 
 
@@ -74,12 +76,12 @@ void Rencontre::CalculRound(QVector<QString> idNiveau_idRencontre_idEffet)
         // génération d'un nouvel effet où tout cela sera affiché
         QString text = "";
         QString imgPath = "";
-        if ( rencontre->m_Ennemis.size() > 0)
+        if ( this->m_Ennemis.size() > 0)
         {
             if ( ennemiElimine )
                 text = "ennemi éliminé, mais ";
-            text += "il reste " + rencontre->TexteDescriptif();
-            imgPath = rencontre->m_Ennemis[0].m_ImgIdle;
+            text += "il reste " + this->TexteDescriptif();
+            imgPath = this->m_Ennemis[0].m_ImgIdle;
 
             if ( !ennemiElimine && nbTouches > 0)
                 text += "\n" + QString::number(nbTouches)
@@ -89,19 +91,22 @@ void Rencontre::CalculRound(QVector<QString> idNiveau_idRencontre_idEffet)
         else
             text = "Tous les ennemis sont éliminés";
 
-        Effet* effetRound = niveau->AjouterEffetNarration(text, imgPath);
+        Effet* effetRound = m_Niveau->AjouterEffetNarration(text, imgPath);
 
         // et liens d'enclenchement entre ce nouvel effet et le précédent, puis relancement du prochain round
-        effetRound->m_Id = "round" + QString::number(niveau->m_Effets.size());
+        effetRound->m_Id = "round" + QString::number(m_Niveau->m_Effets.size());
         QString oldGoToNextRencontre = effetCourant->m_GoToEffetId;
         effetCourant->m_GoToEffetId = effetRound->m_Id;
         effetRound->m_GoToEffetId =oldGoToNextRencontre;
-        effetRound->AjouterCallback(&Rencontre::CalculRound,
-            {idNiveau_idRencontre_idEffet[0], idNiveau_idRencontre_idEffet[1], effetRound->m_Id});
 
+
+        auto lambda = [&](QVector<QString> params){
+            this->CalculRound(params);
+        };
+
+        effetRound->AjouterCallback(lambda,
+            {effetRound->m_Id});
     }
-
-
 
 }
 

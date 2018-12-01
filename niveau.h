@@ -32,7 +32,7 @@ public:
      * @brief Génère l'intégralité de la rencontre
      * Ajoute les rencontres obligatoires et détermine les rencontres facultatives pour remplir le total des rencontres du niveau
     */
-    static void CalculRencontres(QVector<QString> idNiveau);
+    void CalculRencontres();
 
     Ouverture m_Ouverture;
     QString m_NiveauSuivant;// id du niveau suivant

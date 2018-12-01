@@ -25,30 +25,28 @@ void Niveau::AjouterRencontrePossibleAvecEnnemis(float proba, int minimum, int m
     m_RencontresPossibles.push_back(rencontre);
 }
 
-void Niveau::CalculRencontres(QVector<QString> idNiveau)
+void Niveau::CalculRencontres()
 {
-    Niveau* niveau = s_Niveaux[idNiveau[0]];
-
-    foreach (const RencontrePotentielle f_Rencontre, niveau->m_RencontresObligatoires)
-        niveau->m_RencontresFinales.push_back(RencontrePotentielle(f_Rencontre));
+    foreach (const RencontrePotentielle f_Rencontre, this->m_RencontresObligatoires)
+        this->m_RencontresFinales.push_back(RencontrePotentielle(f_Rencontre));
 
     float totalProba = 0;
-    foreach (const RencontrePotentielle f_Rencontre, niveau->m_RencontresPossibles)
+    foreach (const RencontrePotentielle f_Rencontre, this->m_RencontresPossibles)
     {
         totalProba += f_Rencontre.m_Proba;
     }
 
-    while ( niveau->m_RencontresFinales.size() < niveau->m_NbRencontres)
+    while ( this->m_RencontresFinales.size() < this->m_NbRencontres)
     {
         float proba = float(rand())/float(RAND_MAX) * totalProba;
         float totalCourant = 0;
-        foreach (const RencontrePotentielle f_Rencontre, niveau->m_RencontresPossibles)
+        foreach (const RencontrePotentielle f_Rencontre, this->m_RencontresPossibles)
         {
             totalCourant += f_Rencontre.m_Proba;
             if ( proba < totalCourant)
             {
                 // nombre déterminé et génération de rencontred ajoutée
-                niveau->m_RencontresFinales.push_back(RencontrePotentielle(f_Rencontre));
+                this->m_RencontresFinales.push_back(RencontrePotentielle(f_Rencontre));
                 break;
             }
         }
@@ -56,12 +54,12 @@ void Niveau::CalculRencontres(QVector<QString> idNiveau)
 
     // conversions des rencontres finales en effets :
     int indexEffet = 0;
-    while ( niveau->m_RencontresFinales.size() > 0 )
+    while ( this->m_RencontresFinales.size() > 0 )
     {
-        int indexExtrait = qFloor(rand() % niveau->m_RencontresFinales.size());
-        RencontrePotentielle rencontreChoisie = niveau->m_RencontresFinales.takeAt(indexExtrait);
+        int indexExtrait = qFloor(rand() % this->m_RencontresFinales.size());
+        RencontrePotentielle rencontreChoisie = this->m_RencontresFinales.takeAt(indexExtrait);
 
-        niveau->AjouterRencontreEffet(rencontreChoisie, indexEffet, niveau->m_RencontresFinales.size() < 1);
+        this->AjouterRencontreEffet(rencontreChoisie, indexEffet, this->m_RencontresFinales.size() < 1);
         ++indexEffet;
     }
 
@@ -70,16 +68,19 @@ void Niveau::CalculRencontres(QVector<QString> idNiveau)
 Rencontre* Niveau::AjouterRencontreEffet(RencontrePotentielle rencontrePossible, int index, bool derniereRencontre)
 {
     QString idRencontre = ("rencontre" + QString::number(index));
-    Rencontre* rencontre = new Rencontre(idRencontre);
+    Rencontre* rencontre = new Rencontre(this, idRencontre);
     rencontre->m_TypeRencontre = rencontrePossible.m_TypeRencontre;
-
 
     // selon le numéro de la rencontre elle est suivie d'une autre rencontre ou d'un autre niveau
     if ( !derniereRencontre)
     {
         rencontre->m_GoToEffetId = "rencontre" + QString::number(index + 1);
     }
-    rencontre->AjouterCallback(&Rencontre::CalculRound, {m_Id, idRencontre, idRencontre});
+    auto lambda = [&, idRencontre](QVector<QString> params){
+        Rencontre* rencontre = static_cast<Rencontre*>(this->TrouverEffet(idRencontre));
+        rencontre->CalculRound(params);
+    };
+    rencontre->AjouterCallback(lambda, {idRencontre});
 
     this->AjouterEffet(rencontre);
 
