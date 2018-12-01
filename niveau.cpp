@@ -10,6 +10,7 @@ QString Niveau::NivDesert13 = "desert1-3";
 Niveau::Niveau(QString id, QString nom, Ouverture ouverture, int nbRencontres, QString niveauSuivant, QWidget *parent)
     :Evt(id, nom, parent), m_Ouverture(ouverture), m_NiveauSuivant(niveauSuivant), m_NbRencontres(nbRencontres)
 {
+    m_MsChrono = 600;
     Niveau::s_Niveaux.insert(m_Id, this);
 
     Niveau::AjouterAListeNiveaux(this);
@@ -80,7 +81,7 @@ Rencontre* Niveau::AjouterRencontreEffet(RencontrePotentielle rencontrePossible,
     }
     rencontre->AjouterCallback(&Rencontre::CalculRound, {m_Id, idRencontre, idRencontre});
 
-    m_Effets.push_back(rencontre);
+    this->AjouterEffet(rencontre);
 
     // génération d'ennemis :
     rencontre->GenerationEnnemis(rencontrePossible);
