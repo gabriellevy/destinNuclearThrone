@@ -9,7 +9,6 @@ Mutant::Mutant(QString id, QString nom, QString description, QString imagePortra
 
     m_ImagePortrait.load(imagePortrait);
 
-    // m_ImagePortrait(imagePortrait)
     m_CaracsAAfficher.append(Run::pv);
     m_CaracsAAfficher.append(Run::arme1);
     m_CaracsAAfficher.append(Run::arme2);
