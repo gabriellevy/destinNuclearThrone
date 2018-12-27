@@ -25,7 +25,6 @@ CONFIG += resources_big
 
 SOURCES += \
         main.cpp \
-    ../destinLib/aventure.cpp \
     ../destinLib/carac.cpp \
     ../destinLib/choix.cpp \
     ../destinLib/condition.cpp \
@@ -47,10 +46,10 @@ SOURCES += \
     rencontre.cpp \
     ennemi.cpp \
     generateurennemis.cpp \
-    rencontrepotentielle.cpp
+    rencontrepotentielle.cpp \
+    ../destinLib/univers.cpp
 
 HEADERS += \
-    ../destinLib/aventure.h \
     ../destinLib/carac.h \
     ../destinLib/choix.h \
     ../destinLib/condition.h \
@@ -72,7 +71,8 @@ HEADERS += \
     rencontre.h \
     ennemi.h \
     generateurennemis.h \
-    rencontrepotentielle.h
+    rencontrepotentielle.h \
+    ../destinLib/univers.h
 
 FORMS += \
     ../destinLib/aventure.ui \
@@ -95,3 +95,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     nuclearthrone.qrc
+
+DISTFILES += \
+    images/fond.jpg

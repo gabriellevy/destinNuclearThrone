@@ -2,7 +2,7 @@
 #define UNIVERSNUCLEAIRE_H
 
 #include <QWidget>
-#include "../destinLib/aventure.h"
+#include "../destinLib/univers.h"
 
 class UniversNucleaire : public Univers
 {

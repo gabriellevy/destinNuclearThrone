@@ -12,6 +12,7 @@ UniversNucleaire::UniversNucleaire(ModeAffichage modeAffichage,
     : Univers(parent, modeAffichage)
 {
     m_Perso = new IPerso(ui->persoWidget);
+
     m_Histoire = new Run(ui->histoireWidget);
     this->setWindowTitle("Nuclear throne");
 

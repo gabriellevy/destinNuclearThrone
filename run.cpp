@@ -99,6 +99,7 @@ void Run::GenererNiveaux()
                                          Niveau::NivDesert12,
                                          ":/images/niveau/Desert2.png",
                                          "qrc:/sons/mus1.mp3");
+    NivDesert11->AjouterImgFond(":/images/fond_desert.jpg");
     NivDesert11->AjouterRencontrePossibleAvecEnnemis(1.0f, 1, 10, Ennemi::s_Bandit);
     NivDesert11->AjouterRencontrePossibleAvecEnnemis(0.15f, 1, 1, Ennemi::s_NidAAsticot);
     NivDesert11->AjouterRencontrePossibleAvecEnnemis(0.6f, 1, 1, Ennemi::s_Asticot);
@@ -121,6 +122,7 @@ void Run::GenererPersos()
 void Run::GenererEvtsAccueil()
 {
     Evt* Debut = AjouterEvt("Debut", "Choix de personnage");
+    Debut->AjouterImgFond(":/images/fond.jpg");
     Effet* intro = Debut->AjouterEffetNarration(
                 "Choisissez votre personnage.",
                 ":/images/niveau/game-development-startups-nt-campfire-gif.gif");

@@ -4,7 +4,7 @@
 #include <QHash>
 #include <QVector>
 #include "rencontre.h"
-#include "../destinLib/aventure.h"
+#include "../destinLib/univers.h"
 #include "rencontrepotentielle.h"
 
 class Niveau : public Evt

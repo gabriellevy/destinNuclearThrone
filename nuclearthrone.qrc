@@ -51,5 +51,7 @@
         <file>images/ennemis/Radmaggot_walk.gif</file>
         <file>images/ennemis/Scorpion_idle.gif</file>
         <file>images/ennemis/Spawner_idle.gif</file>
+        <file>images/fond.jpg</file>
+        <file>images/fond_desert.jpg</file>
     </qresource>
 </RCC>
